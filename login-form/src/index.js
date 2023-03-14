@@ -15,9 +15,9 @@ root.render(
     {/* <FileUploadPage/> */}
     {/* <MyForm /> */}
     {/* <ValidDemo/> */}
-    {/* <LoginForm/> */}
+    <LoginForm/>
     {/* <BasicForm/> */}
-    <ValidationSchemaEx/>
+    {/* <ValidationSchemaEx/> */}
   </React.StrictMode>
 );
 

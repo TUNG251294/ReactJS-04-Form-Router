@@ -1,0 +1,8 @@
+Multiple Input Fields
+Có thể kiểm soát các giá trị của nhiều đầu vào <input/> bằng cách thêm `name` vào mỗi phần tử.
+
+Khi bạn khởi tạo trạng thái trong hàm tạo, hãy sử dụng `name`
+
+Để truy cập các trình xử lý sự kiện, hãy sử dụng cú pháp event.target.name và event.target.value.
+
+Để cập nhật trạng thái trong phương thức this.setState, hãy sử dụng dấu ngoặc vuông [] xung quanh tên thuộc tính

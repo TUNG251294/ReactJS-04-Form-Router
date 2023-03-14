@@ -1,0 +1,118 @@
+Multiple Input Fields
+Có thể kiểm soát các giá trị của nhiều đầu vào <input/> bằng cách thêm `name` vào mỗi phần tử.
+
+Khi bạn khởi tạo trạng thái trong hàm tạo, hãy sử dụng `name`
+
+Để truy cập các trình xử lý sự kiện, hãy sử dụng cú pháp event.target.name và event.target.value.
+
+Để cập nhật trạng thái trong phương thức this.setState, hãy sử dụng dấu ngoặc vuông [] xung quanh tên thuộc tính
+____________________________________________________________________________________
+ thẻ <textarea> sử dụng thuộc tính value để lưu trữ các đoạn văn bản.
+
+Ví dụ :
+
+import React, { useState } from "react";
+
+export default function Form() {
+  const [state, setState] = useState({
+    description: "The content of a textarea goes in the value attribute"
+  });
+  return (
+    <form>
+      <textarea value={state.description} />
+    </form>
+  );
+}
+______________________________________________________________________________________
+Thẻ Select
+
+Trong HTML, giá trị đã chọn trong danh sách dropdown được xác định bằng thuộc tính selected:
+Ví dụ:
+
+<select>
+  <option value="Ford">Ford</option>
+  <option value="Volvo" selected>Volvo</option>
+  <option value="Fiat">Fiat</option>
+</select>
+
+Trong React, giá trị đã chọn được xác định bằng thuộc tính value trên thẻ select:
+Ví dụ:
+
+import React, {useState} from 'react'
+
+export default function Form() {
+const [state, setState] = useState({
+mycar: 'Volvo'
+})
+    return (
+      <form>
+      <select value={state.mycar}>
+        <option value="Ford">Ford</option>
+        <option value="Volvo">Volvo</option>
+        <option value="Fiat">Fiat</option>
+      </select>
+      </form>
+    );
+}
+______________________________________________________________________________________
+Cách sử dụng Formik
+
+Cài đặt
+npm i formik
+hoặc
+yarn add formik
+
+Sau đó import vào component 
+
+import { Formik } from 'formik';
+
+Validation trong Formik
+
+Có 2 cách xác thực biểu mẫu trong Formik
+<Formik validate> và withFormik ({validate: ...})
+<Formik validationSchema> và withFormik ({validationSchema: ...})
+
+1/ validate
+
+<Formik> và withFormik() nhận một prop / option được gọi là validate chấp nhận một hàm đồng bộ (synchronous function) hoặc không đồng bộ (asynchronous function).
+
+// Synchronous validation
+ const validate = (values, props /* only available when using withFormik */) => {
+   const errors = {};
+ 
+   if (!values.email) {
+     errors.email = 'Required';
+   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+     errors.email = 'Invalid email address';
+   }
+ 
+   //...
+ 
+   return errors;
+ };
+
+
+
+// Async Validation
+ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+ 
+ const validate = (values, props /* only available when using withFormik */) => {
+   return sleep(2000).then(() => {
+     const errors = {};
+     if (['admin', 'null', 'god'].includes(values.username)) {
+       errors.username = 'Nice try';
+     }
+     // ...
+     return errors;
+   });
+ };
+
+2/ validationSchema
+
+Chúng ta sử dụng thư viện bên thứ 3 là Yup để xác thực
+
+Formik có tùy chọn cấu hình / hỗ trợ đặc biệt cho Yup  để chuyển đổi các lỗi xác thực của Yup thành một đối tượng đẹp có key khớp với các giá trị
+
+Cài đặt Yup vào dự án
+
+npm i yup
