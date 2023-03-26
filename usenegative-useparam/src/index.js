@@ -26,7 +26,7 @@ root.render(
           </Route>
       </Routes> */}
 
-      {/* <Routes>
+      <Routes>
         <Route path='/' element={<ParamApp/>}>
           <Route index element = {
             <main style={{padding: '1rem'}}>
@@ -36,9 +36,9 @@ root.render(
           <Route path='products' element={<ProductList/>}/>
           <Route path='products/:id' element={<ProductDetail/>}/>
         </Route>
-      </Routes> */}
+      </Routes>
 
-      <SearchParam/>
+      {/* <SearchParam/> */}
     </BrowserRouter>
   </React.StrictMode>
 );
